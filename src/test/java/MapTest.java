@@ -1,5 +1,4 @@
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class MapTest {
@@ -15,10 +14,14 @@ public class MapTest {
         Set<String> keys=map.keySet();
 
         for (String key: keys){
-            System.out.println("健："+key+",值："+map.get(key));
-
+            System.out.println("key健："+key+",value值："+map.get(key));
         }
-
+        List<String> list=new ArrayList<String>();
+        list.add("123");
+        list.add("345");
+        for (String str:list){
+            System.out.println("list遍历："+str);
+        }
 
     }
 }
