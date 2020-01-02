@@ -1,11 +1,16 @@
 package com.mmall.common;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 import java.io.Serializable;
 import java.sql.SQLOutput;
 
 /**
  * 通用的数据响应对象
+ * 保证序列化是json 的时候如果是null的对象保证key 消失
  */
+@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class ServerResponse<T>  implements Serializable {
 
     private  int status;
@@ -13,6 +18,8 @@ public class ServerResponse<T>  implements Serializable {
     private  String msg;
 
     private   T  data;
+
+
 
     private ServerResponse(int status){
          this.status=status;
@@ -31,6 +38,65 @@ public class ServerResponse<T>  implements Serializable {
         this.status=status;
         this.msg=msg;
     }
+
+    /**
+     * @JsonIgnore 注解 在json格式中不显示
+     * @return
+     */
+    @JsonIgnore
+    public boolean isSuccess(){
+        return this.status==ResponseCode.SUCCESS.getCode();
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    /**
+     * 成功响应
+     * @param <T>
+     * @return
+     */
+    public  static  <T> ServerResponse<T> createBySuccess(){
+        return  new ServerResponse<T>(ResponseCode.SUCCESS.getCode());
+    }
+    public  static  <T> ServerResponse<T> createBySuccessMessage(String msg){
+        return  new ServerResponse<T>(ResponseCode.SUCCESS.getCode(),msg);
+    }
+    public  static  <T> ServerResponse<T> createBySuccess(T data){
+        return  new ServerResponse<T>(ResponseCode.SUCCESS.getCode(),data);
+    }
+    public  static  <T> ServerResponse<T> createBySuccess(String msg,T data){
+        return  new ServerResponse<T>(ResponseCode.SUCCESS.getCode(),msg,data);
+    }
+
+    /**
+     * 失败响应
+     * @param <T>
+     * @return
+     */
+    public  static  <T> ServerResponse<T> createByError(){
+        return  new ServerResponse<T>(ResponseCode.ERROR.getCode(),ResponseCode.ERROR.getDesc());
+    }
+    public  static  <T> ServerResponse<T> createByErrorMessage(String errorMessage){
+        return  new ServerResponse<T>(ResponseCode.ERROR.getCode(),errorMessage);
+    }
+    public  static  <T> ServerResponse<T> createByErrorCodeMessage(int errorCode,String errorMessage){
+        return  new ServerResponse<T>(errorCode,errorMessage);
+    }
+
+
+
+
+
 
 
 
