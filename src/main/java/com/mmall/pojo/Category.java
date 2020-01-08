@@ -1,6 +1,7 @@
 package com.mmall.pojo;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Category {
     private Integer id;
@@ -85,5 +86,27 @@ public class Category {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    /**
+     * @description  用Set 时 必须 重写 hashCode 和 equals 方法
+     * 1.equal()相等的两个对象他们的hashCode()肯定相等，也就是用equal()对比是绝对可靠的。
+     * 2.hashCode()相等的两个对象他们的equal()不一定相等，也就是hashCode()不是绝对可靠的。
+     * @author 12484
+     * @date 2020/1/6 23:49
+     * @param o
+     * @return
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Category category = (Category) o;
+        return id.equals(category.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

@@ -59,7 +59,7 @@ public class CategoryServiceImpl  implements ICategoryService {
         category.setName(categoryName);
         category.setId(categoryId);
 
-        int resultCount=categoryMapper.updateByPrimaryKey(category);
+        int resultCount=categoryMapper.updateByPrimaryKeySelective(category);
         if (resultCount>0){
             return  ServerResponse.createBySuccessMessage("修改品类名称成功");
         }

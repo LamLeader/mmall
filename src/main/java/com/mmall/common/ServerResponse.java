@@ -4,7 +4,6 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 import java.io.Serializable;
-import java.sql.SQLOutput;
 
 /**
  * 通用的数据响应对象
