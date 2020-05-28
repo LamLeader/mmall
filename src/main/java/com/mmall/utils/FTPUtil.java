@@ -10,7 +10,11 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by geely
+ * @description  文件上传工具类
+ * @author 12484
+ * @date 2020/2/3 22:13
+ * @param null
+ * @return
  */
 public class FTPUtil {
 
@@ -64,9 +68,15 @@ public class FTPUtil {
     }
 
 
-
+    /**
+     * @description
+     * 连接服务器
+     * @author
+     * @date 2020/2/3 22:12
+     * @param ip，port，user，pwd
+     * @return
+     */
     private boolean connectServer(String ip,int port,String user,String pwd){
-
         boolean isSuccess = false;
         ftpClient = new FTPClient();
         try {
@@ -78,30 +88,21 @@ public class FTPUtil {
         return isSuccess;
     }
 
-
-
-
-
-
-
-
-
-
-
+    public static void main(String[] args) {
+        FTPUtil ftpUtil=new FTPUtil("47.104.154.187",22,"root","PSW123!@");
+        ftpUtil.connectServer("47.104.154.187",22,"root","PSW123!@");
+    }
     private String ip;
     private int port;
     private String user;
     private String pwd;
     private FTPClient ftpClient;
-
     public String getIp() {
         return ip;
     }
-
     public void setIp(String ip) {
         this.ip = ip;
     }
-
     public int getPort() {
         return port;
     }

@@ -8,6 +8,22 @@ package com.collection.test;
  * @modified By:
  */
 public class HashCodeAndEquals {
+      /**
+       *https://mp.weixin.qq.com/s?__biz=MzIyNDU2ODA4OQ==&mid=2247483944&idx=1&sn=3a81af53aaaac56b60e50c1619433513&chksm=e80db45edf7a3d48807151107efd8d2b39f04424b6b1fe57212a92ea2b4927702a5250c37fa7&scene=21#wechat_redirect
+       *1、【强制】关于hashCode和equals的处理，遵循如下规则：
+       * 1）只要重写equals,就必须重新hashCode.
+       * 2) 因为Set存储的是不重复的对象，依据hashCode和equals进行判断，所以Set存储的是对象必须
+       * 重写这两个方法。
+       * 3) 如果自定义对象为Map的键那么必须重写hashCode和equals
+       * ps:String重写了hashCode和equal方法，所以我们可以非常愉快的使用String
+       * 对象作为Key来使用
+       * 原则
+       * 1.同一个对象（没有发生过修改）无论何时调用hashCode()得到的返回值必须一样。
+       * 如果一个key对象在put的时候调用hashCode()决定了存放的位置，而在get的时候调用hashCode()得到了不一样的返回值，这个值映射到了一个和原来不一样的地方，那么肯定就找不到原来那个键值对了。
+       * 2.hashCode()的返回值相等的对象不一定相等，通过hashCode()和equals()必须能唯一确定一个对象。不相等的对象的hashCode()的结果可以相等。hashCode()在注意关注碰撞问题的时候，也要关注生成速度问题，完美hash不现实。
+       * 3.一旦重写了equals()函数（重写equals的时候还要注意要满足自反性、对称性、传递性、一致性），就必须重写hashCode()函数。而且hashCode()的生成哈希值的依据应该是equals()中用来比较是否相等的字段。
+       * 如果两个由equals()规定相等的对象生成的hashCode不等，对于hashMap来说，他们很可能分别映射到不同位置，没有调用equals()比较是否相等的机会，两个实际上相等的对象可能被插入不同位置，出现错误。其他一些基于哈希方法的集合类可能也会有这个问题
+       */
    /**
     * @description
     * https://blog.csdn.net/bailu666666/article/details/81153815

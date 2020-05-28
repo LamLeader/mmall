@@ -6,7 +6,7 @@ import java.nio.file.FileAlreadyExistsException;
  * @description  常量类
  * @author 12484
  * @date 2020/1/4 21:25
- * @param null
+ * @param
  * @return
  */
 public class Const {
